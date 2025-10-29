@@ -188,7 +188,7 @@ with tab3:
     st.markdown("---")
 
     st.markdown("""
-    Het gekozen model is uitgebreid ten opzichte van het vorige model:
+    Het gekozen model is een np.where model met deze regels:
 
     - Vrouwen uit de 1e en 2e klas jonger dan 60 jaar overleven het  
     - Mannen uit de 1e of 2e klas jonger dan 12 jaar overleven het
@@ -196,4 +196,5 @@ with tab3:
 
     st.markdown("Met deze submission wordt een Kaggle-score van **0.775** behaald.")
     st.markdown("---")
+
     
