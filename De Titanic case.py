@@ -23,7 +23,7 @@ with col2:
 with col1:
     st.markdown("""
     <div style="
-        background-color:#e8f9f0;
+        background-color: var(--background-color-secondary);
         border-left: 6px solid #4CAF50;
         padding: 1em;
         border-radius: 6px;
@@ -93,6 +93,7 @@ for _, row in agg_df.iterrows():
 st_folium(m, width=700, height=500)
 
 st.markdown("---")
+
 
 
 
