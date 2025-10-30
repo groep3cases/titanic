@@ -58,20 +58,20 @@ fig = go.Figure()
 fig.add_trace(go.Bar(
     x=summary["Model"],
     y=summary["Overall Best Accuracy"],
-    text=summary["Hoogst mogelijke nauwkeurigheid"].apply(lambda x: f"{x:.3f}"),
+    text=summary["Overall Best Accuracy"].apply(lambda x: f"{x:.3f}"),
     textposition="outside",
     marker=dict(color="lightgray"),
-    name="Overall Best Accuracy",
+    name="Hoogst mogelijke nauwkeurigheid",
     opacity=0.6
 ))
 
 fig.add_trace(go.Bar(
     x=summary["Model"],
     y=summary["Filtered Best Accuracy"],
-    text=summary["Nauwkeurigheid geselecteerde kolommen"].apply(lambda x: f"{x:.3f}"),
+    text=summary["Filtered Best Accuracy"].apply(lambda x: f"{x:.3f}"),
     textposition="outside",
     marker=dict(color="royalblue"),
-    name="Best Accuracy"
+    name="Nauwkeurigheid geselecteerde kolommen"
 ))
 
 fig.update_layout(
@@ -90,3 +90,4 @@ st.plotly_chart(fig, use_container_width=True)
 st.markdown("Alle geselecteerde modellen en kolommen zijn hieronder ook in een tabel weergegeven:")
 
 st.dataframe(filtered_df.sort_values(by="Accuracy", ascending=False), use_container_width=True)
+
