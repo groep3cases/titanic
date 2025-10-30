@@ -197,16 +197,15 @@ with tab1:
         mode_pct = d.value_counts(normalize=True).iloc[0] * 100 if not d.value_counts().empty else 0
         
         st.markdown("### Verkennen")
-        c1, c3, c4 = st.columns(4)
-        c1.metric("Aantal", f"{total}")
+        c1, c3, c4 = st.columns(3)
         
+        c1.metric("Aantal", f"{total}")
         c3.metric("Unieke categorieën", f"{unique}")
         c4.metric(
             label="Meest voorkomend",
-            value=f"{mode_val}",
-            delta=f"{mode_pct:.1f}%",
-            delta_color="off"
+            value=f"{mode_val} ({mode_pct:.1f}%)"
         )
+
 
     plot_distribution(df, kolom, color_survived=kleur)
     show_basic_info(df, kolom)
