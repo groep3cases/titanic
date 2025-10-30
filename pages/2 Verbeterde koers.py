@@ -197,12 +197,8 @@ with tab1:
         mode_pct = d.value_counts(normalize=True).iloc[0] * 100 if not d.value_counts().empty else 0
         
         st.markdown("### Verkennen")
-        c1, c2, c3, c4 = st.columns(4)
+        c1, c3, c4 = st.columns(4)
         c1.metric("Aantal", f"{total}")
-        
-        share_second = d.value_counts(normalize=True).iloc[1] * 100 if unique > 1 else 0
-        dominantie = mode_pct - share_second
-        c2.metric("Dominantie", f"{dominantie:.1f}%")
         
         c3.metric("Unieke categorieën", f"{unique}")
         c4.metric(
@@ -452,4 +448,5 @@ with tab3:
     
 
     
+
 
