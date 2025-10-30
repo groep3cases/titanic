@@ -40,8 +40,6 @@ with tab2:
         "Analyse van patronen, relaties en variabelen die invloed hebben op de overlevingskans, "
         "met behulp van grafieken en kruistabellen."
     )
-
-    st.write("Data analyse")
     sns.set_style('whitegrid')
     sns.set_palette('deep')
 
@@ -127,11 +125,11 @@ with tab2:
     st.subheader("Overlevingspercentage per geslacht en klasse gecombineerd")
     st.dataframe(sexclasssurvived)
 
-    # ===== 1. Pclass verdeling =====
+    # Pclass verdeling
     st.subheader("Verdeling passagiers per klasse")
     st.write(train['Pclass'].value_counts(normalize=True))  # 'index' argument mag weg bij Series
 
-    # ===== 2. Titel uit naam halen =====
+    # Titel uit naam halen
     def get_title(Name):
         splitkomma = Name.split(',')[1]
         splitpunt = splitkomma.split('.')[0]
@@ -143,12 +141,12 @@ with tab2:
     st.subheader("Overlevingspercentage per titel")
     st.dataframe(pd.crosstab(train['Title'], train['Survived'], normalize='index'))
 
-    # ===== 3. Ontbrekende leeftijd =====
+    # Ontbrekende leeftijd 
     train['AgeMissing'] = train['Age'].isna()
     st.subheader("Overlevingspercentage bij ontbrekende leeftijdsdata")
     st.dataframe(pd.crosstab(train['AgeMissing'], train['Survived'], normalize='index'))
 
-    # ===== 4. Leeftijdsgroepen =====
+    # Leeftijdsgroepen 
     train['AgeGroup'] = pd.cut(train['Age'].dropna(), bins=[0, 12, 60, 100],
                             labels=['Child(0-12)', 'Adult(12-60)', 'Old(60+)'])
     agesurvived = pd.crosstab(train['AgeGroup'], train['Survived'], normalize='index')
@@ -156,7 +154,7 @@ with tab2:
     st.subheader("Overlevingspercentage per leeftijdsgroep")
     st.dataframe(agesurvived)
 
-    # ===== 5. Familieomvang =====
+    # Familieomvang 
     train['FamilySize'] = train['SibSp'] + train['Parch'] + 1
     train['IsAlone'] = train['FamilySize'] == 1
 
@@ -166,7 +164,7 @@ with tab2:
     st.subheader("Overlevingspercentage: alleenreizend vs niet")
     st.dataframe(pd.crosstab(train['IsAlone'], train['Survived'], normalize='index'))
 
-    # ===== 6. Combinatie Crosstab (Geslacht, Klasse, Leeftijdsgroep) =====
+    # Combinatie Crosstab
     ct = pd.crosstab([train['Sex'], train['Pclass'], train['AgeGroup']],
                     train['Survived'], normalize='index')
 
@@ -198,3 +196,4 @@ with tab3:
     st.markdown("---")
 
     
+
