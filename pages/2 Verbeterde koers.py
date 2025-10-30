@@ -195,17 +195,21 @@ with tab1:
         unique = d.nunique()
         mode_val = d.mode()[0] if not d.mode().empty else "—"
         mode_pct = d.value_counts(normalize=True).iloc[0] * 100 if not d.value_counts().empty else 0
-
+        
         st.markdown("### Verkennen")
         c1, c2, c3, c4 = st.columns(4)
         c1.metric("Aantal", f"{total}")
-        c2.metric("Ontbrekend", f"{missing} ({(missing/total*100):.1f}%)")
+        
+        share_second = d.value_counts(normalize=True).iloc[1] * 100 if unique > 1 else 0
+        dominantie = mode_pct - share_second
+        c2.metric("Dominantie", f"{dominantie:.1f}%")
+        
         c3.metric("Unieke categorieën", f"{unique}")
         c4.metric(
             label="Meest voorkomend",
             value=f"{mode_val}",
             delta=f"{mode_pct:.1f}%",
-            delta_color="off"   
+            delta_color="off"
         )
 
     plot_distribution(df, kolom, color_survived=kleur)
@@ -448,3 +452,4 @@ with tab3:
     
 
     
+
